@@ -1,8 +1,15 @@
-import Categories from './components/categories/categories.component'
-
+import { Routes, Route } from 'react-router-dom';
+import Home from './routes/home/home.component.jsx';
+import Navigation from './routes/navigation/navigation.component.jsx';
+import SignIn from './routes/sign-in/sign-in.component.jsx';
 const App = () => {
   return (
-    <Categories />
+    <Routes>
+      <Route path="/" element={<Navigation />} >
+        <Route index element={<Home />} />
+        <Route path='signIn' element={<SignIn />} />
+      </Route>
+    </Routes>
   );
 }
 
