@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { signInUserWithEmailAndPassword, signInWithGooglePopup, createUserDocument } from '../../utils/firebase/firebase.utils';
 import FormInput from '../../components/form-input/form-input.component';
 import Button from '../../components/button/button.component';
@@ -29,7 +29,6 @@ const SignInForm = () => {
 
         try {
             const { user } = await signInUserWithEmailAndPassword(email, password);
-            console.log(user);
             resetFormField();
         } catch (error) {
             switch (error.code) {
@@ -46,8 +45,7 @@ const SignInForm = () => {
     }
 
     const logGoogleUser = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocument(user);
+        await signInWithGooglePopup();
     };
 
     return (
